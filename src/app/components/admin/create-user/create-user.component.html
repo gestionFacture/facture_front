@@ -1,0 +1,30 @@
+<div id="create-user-section" class="form-section card mb-4">
+  <div class="card-header bg-primary text-white">Créer un nouvel utilisateur</div>
+  <div class="card-body">
+    <form (ngSubmit)="createUser()">
+      <div class="mb-3">
+        <label for="username" class="form-label">Nom d'utilisateur :</label>
+        <input type="text" class="form-control" id="username" [(ngModel)]="appUser.username" name="username" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email :</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="appUser.email" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="telephone" class="form-label">Numéro de téléphone :</label>
+        <input type="tel" class="form-control" id="telephone" [(ngModel)]="appUser.numeroTelephone" name="numeroTelephone" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Mot de passe :</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="appUser.password" name="password" required>
+      </div>
+      <div class="mb-3">
+        <label for="verifyPassword" class="form-label">Vérifier le mot de passe :</label>
+        <input type="password" class="form-control" id="verifyPassword" [(ngModel)]="appUser.verifyPassword" name="verifyPassword" required>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Créer</button>
+      </div>
+    </form>
+  </div>
+</div>
