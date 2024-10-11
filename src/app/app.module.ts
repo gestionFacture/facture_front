@@ -9,6 +9,8 @@ import { UpdateUserComponent } from './components/admin/update-user/update-user.
 import { ListUserComponent } from './components/admin/list-user/list-user.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { RoleComponent } from './components/admin/role/role.component';
+import { RemoveRoleComponent } from './components/admin/remove-role/remove-role.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     CreateUserComponent,
     UpdateUserComponent,
     ListUserComponent,
+    RoleComponent,
+    RemoveRoleComponent,
   ],
   imports: [
     BrowserModule,

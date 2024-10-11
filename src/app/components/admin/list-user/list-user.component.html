@@ -3,8 +3,8 @@
 
   <div class="mb-4 text-center">
     <button class="btn btn-primary me-2" routerLink="/createUser">Ajouter un compte</button>
-    <button class="btn btn-secondary me-2" onclick="showSection('assign-role-section')">Affecter un rôle</button>
-    <button class="btn btn-danger me-2" onclick="showSection('remove-role-section')">Retirer un rôle</button>
+    <button class="btn btn-secondary me-2" routerLink="/role">Affecter un rôle</button>
+    <button class="btn btn-danger me-2" routerLink="/remouveRole">Retirer un rôle</button>
   </div>
 
   <table class="table table-striped table-hover">
@@ -13,6 +13,8 @@
       <th scope="col">username</th>
       <th scope="col">email</th>
       <th scope="col">numeroTelephone</th>
+      <th scope="col">Roles</th>
+
     </tr>
     </thead>
     <tbody>
@@ -20,6 +22,14 @@
       <td>{{u.username}}</td>
       <td>{{u.email}}</td>
       <td>{{u.numeroTelephone}}</td>
+      <td>
+  <span *ngIf="u.appRoles && u.appRoles.length > 0">
+    <span *ngFor="let role of u.appRoles; let i = index">
+      {{ role.roleName }}<span *ngIf="i < u.appRoles.length - 1">, </span>
+    </span>
+  </span>
+        <span *ngIf="!u.appRoles || u.appRoles.length === 0">Aucun rôle attribué</span>
+      </td>
       <td>
         <button class="btn btn-primary btn-sm me-2 " >
           <i class="bi bi-pencil "></i>

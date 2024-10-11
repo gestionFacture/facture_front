@@ -1,9 +1,12 @@
 export interface AppUser {
+  userId?:          string;
   username:        string;
+  password:        string;
+  verifyPassword:        string;
+  active?:          boolean;
   email:           string;
   numeroTelephone: string;
-  password:        string;
-  verifyPassword : string;
+  appRoles?:        AppRole[];
 }
 
 export interface AppRole {
@@ -11,13 +14,11 @@ export interface AppRole {
   roleName: string;
 }
 
-interface LoginRequest {
-  username: string;
-  password: string;
-}
-
-interface LoginResponse {
-  message: string;
-  username: string;
-  roles: string[];
+export enum RoleEnum {
+  PRESTATAIRE = 'PRESTATAIRE',
+  SIGNATURE = 'SIGNATURE',
+  CA = 'CA',
+  ADMIN = 'ADMIN',
+  SAL = 'SAL',
+  SBC = 'SBC'
 }

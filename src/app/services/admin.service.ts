@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { AppUser } from '../models/user.model';
@@ -30,8 +30,17 @@ export class AdminService {
     return this.http.get(environment.apiUrl + '/admin/listUsers');
   }
 
-  createUser(appUser: AppUser): Observable<Array<AppUser>> {
-    return this.http.post<Array<AppUser>>(environment.apiUrl + '/admin/createUser', appUser);
+  createUser(appUser: AppUser): Observable<any> {
+    return this.http.post(environment.apiUrl + '/admin/createUser', appUser,{responseType: 'text'});
   }
 
+  affecterRole(appUser: AppUser, roleEnum: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${environment.apiUrl}/admin/affecterRole?roleEnum=${roleEnum}`, appUser, { headers });
+  }
+
+  retirerRole(appUser: AppUser, roleEnum: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${environment.apiUrl}/admin/removeRole?roleEnum=${roleEnum}`, appUser, { headers });
+  }
 }

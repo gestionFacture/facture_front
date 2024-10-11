@@ -1,37 +1,38 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
+import { AdminService } from '../../../services/admin.service';
+import { AppUser } from '../../../models/user.model';
 import {Router} from "@angular/router";
-import {AdminService} from "../../../services/admin.service";
-import {AppUser} from "../../../models/user.model";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
-  styleUrl: './create-user.component.css'
+  styleUrls: ['./create-user.component.css']  // Correction de `styleUrl` à `styleUrls`
 })
 
 export class CreateUserComponent {
   appUser: AppUser = {
     username: '',
     password: '',
-    verifyPassword:'',
+    verifyPassword: '',
     email: '',
     numeroTelephone: '',
   };
 
-  constructor(
-    private adminService: AdminService,
-  ) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
-
-  createUser() {
-    this.adminService.createUser(this.appUser).subscribe(
-      response => {
-        console.log(response);
+  createUser(): void {
+        this.adminService.createUser(this.appUser).subscribe({
+      next: (createdUser) => {
+        console.log('Utilisateur ajouté avec succès', createdUser);
+        this.router.navigate(['/home']);
       },
-      error => {
-        console.error('Erreur lors de la création de l’utilisateur :', error);
+      error: (err) => {
+        console.error('Erreur lors de l\'ajout de l\'utilisateur', err);
       }
-    );
+    });
   }
+
+
+
 }
